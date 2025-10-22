@@ -7,7 +7,7 @@ import {
   GridCellParams,
   GridToolbar,
 } from "@mui/x-data-grid";
-import { Snackbar, IconButton } from "@mui/material";
+import { Snackbar, IconButton, Tooltip } from "@mui/material";
 import { useState } from "react";
 import AddCar from "./AddCar";
 import EditCar from "./EditCar";
@@ -58,22 +58,24 @@ function Carlist() {
       filterable: false,
       disableColumnMenu: true,
       renderCell: (params: GridCellParams) => (
-        <IconButton
-          aria-label="delete"
-          size="small"
-          onClick={() => {
-            if (
-              // 이게 참이면 삭제하면 되겠군요. (삭제할 때 확인창 띄우기)
-              window.confirm(
-                `${params.row.brand}의 ${params.row.model} 자동차를 삭제하시겠습니까?`
-              )
-            ) {
-              mutate(params.row._links.self.href);
-            }
-          }}
-        >
-          <DeleteForeverRoundedIcon fontSize="small" />
-        </IconButton>
+        <Tooltip title="delete car">
+          <IconButton
+            aria-label="delete"
+            size="small"
+            onClick={() => {
+              if (
+                // 이게 참이면 삭제하면 되겠군요. (삭제할 때 확인창 띄우기)
+                window.confirm(
+                  `${params.row.brand}의 ${params.row.model} 자동차를 삭제하시겠습니까?`
+                )
+              ) {
+                mutate(params.row._links.self.href);
+              }
+            }}
+          >
+            <DeleteForeverRoundedIcon fontSize="small" />
+          </IconButton>
+        </Tooltip>
       ),
     },
   ];
