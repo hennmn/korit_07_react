@@ -1,14 +1,10 @@
 // AddCar.tsx
-import {
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-} from "@mui/material";
+import { Dialog, DialogActions, DialogTitle, Button } from "@mui/material";
 import { Car } from "../types";
 import { ChangeEvent, useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { addCar } from "../api/carapi";
+import CarDialogContent from "./CarDialogContent";
 
 function AddCar() {
   const [open, setOpen] = useState(false);
@@ -55,62 +51,15 @@ function AddCar() {
 
   return (
     <>
-      <button onClick={handleClickOpen}>New Car</button>
+      <Button onClick={handleClickOpen} variant="outlined">
+        New Car
+      </Button>
       <Dialog open={open}>
         <DialogTitle>New Car</DialogTitle>
-        <DialogContent>
-          <input
-            type="text"
-            name="brand"
-            value={car.brand}
-            placeholder="Brand"
-            onChange={handleChange}
-          />{" "}
-          <br />
-          <input
-            type="text"
-            name="model"
-            value={car.model}
-            placeholder="Model"
-            onChange={handleChange}
-          />{" "}
-          <br />
-          <input
-            type="text"
-            name="color"
-            value={car.color}
-            placeholder="Color"
-            onChange={handleChange}
-          />{" "}
-          <br />
-          <input
-            type="text"
-            name="registrationNumber"
-            value={car.registrationNumber}
-            placeholder="Reg.No"
-            onChange={handleChange}
-          />{" "}
-          <br />
-          <input
-            type="text"
-            name="modelYear"
-            value={car.modelYear}
-            placeholder="Year"
-            onChange={handleChange}
-          />{" "}
-          <br />
-          <input
-            type="text"
-            name="price"
-            value={car.price}
-            placeholder="Price"
-            onChange={handleChange}
-          />{" "}
-          <br />
-        </DialogContent>
+        <CarDialogContent car={car} handleChange={handleChange} />
         <DialogActions>
-          <button onClick={handleClickClose}>Cancel | 취소</button>
-          <button onClick={handleSave}>Save | 저장</button>
+          <Button onClick={handleClickClose}>Cancel | 취소</Button>
+          <Button onClick={handleSave}>Save | 저장</Button>
         </DialogActions>
       </Dialog>
     </>
