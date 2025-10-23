@@ -7,6 +7,7 @@ import {
 } from "@mui/material";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Carlist from "./components/Carlist";
+import Login from "./components/Login";
 
 const queryClient = new QueryClient();
 
@@ -22,7 +23,7 @@ function App() {
       </AppBar>
       {/* useQuery는 이 밑에 감싸는 용도로 씀. 복습 필요 */}
       <QueryClientProvider client={queryClient}>
-        <Carlist />
+        <Login />
       </QueryClientProvider>
     </Container>
   );
