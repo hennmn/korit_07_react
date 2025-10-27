@@ -23,7 +23,7 @@ function AddCar() {
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setCar({ ...car, [event.target.name]: event.target.value });
-  };
+  }; // 여기가 CarDialogContent의 부모 컴포넌트
 
   const queryClient = useQueryClient();
 
